@@ -42,7 +42,6 @@ def main():
             filename = os.path.splitext(file)[0]
             dateVal = getDateVal(filename)
             if not args.t:
-                print('Converting', file)
                 tesseract(file)
 
             newDF = extractFinancial(filename+'.txt', dateVal)
