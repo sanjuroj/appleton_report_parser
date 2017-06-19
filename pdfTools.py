@@ -59,6 +59,9 @@ def main():
 
 
 def getDateVal(fileName):
+    """
+    Gets the report date from the report's file name.
+    """
     matchObj = re.search('(\d\d?-\d\d?-\d+)', fileName)
     if not matchObj:
         print("Can't parse date for {}.  Please rename file and try again".format(filename))
@@ -67,6 +70,9 @@ def getDateVal(fileName):
 
 
 def extractFinancial(filePath, dateVal):
+    """
+    Parses the text file and extracts the relevant financial information.  
+    """
     dateString = '{:%Y-%m-%d}'.format(dateVal)
     amtDict = {}
     with open(filePath, 'r') as fh:
@@ -100,6 +106,9 @@ def extractFinancial(filePath, dateVal):
 
 
 def tesseract(fileName):
+    """
+    Runs convert and tesseract on a file
+    """
     fileNameRaw = os.path.splitext(fileName)[0]
     os.system('convert -density 300 -depth 8 "{}" "{}.tiff"'.format(fileName, fileNameRaw))
     os.system('tesseract "{0}.tiff" "{0}"'.format(fileNameRaw))
